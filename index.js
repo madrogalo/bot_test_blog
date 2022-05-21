@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 const TelegramBot = require('node-telegram-bot-api');
 const bodyParser = require('body-parser');
-
+const cors = require('cors')
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
@@ -18,9 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-
-  console.log('req', req.body);
-
   const {tel, name, pizza} = req.body
 
   const message = 
@@ -30,9 +28,8 @@ app.post('/', (req, res) => {
     Піца: ${pizza}
   `
 
-  console.log(`замовлення ${message}`);
-  bot.sendMessage(3997929, message);
-  res.send(`замовлення ${message}`)
+  bot.sendMessage(3997929, message); 
+  res.send(`${message}`)
 
 })
 
