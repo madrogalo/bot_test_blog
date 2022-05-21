@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const TelegramBot = require('node-telegram-bot-api');
 const bodyParser = require('body-parser');
 
