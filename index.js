@@ -19,18 +19,19 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const {tel, name, pizza} = req.body
-
-  const message = 
-  `У вас нове замовлення
-    Імя: ${name}
-    Телефон: ${tel} 
-    Піца: ${pizza}
+  const newArr = req.body.map((item) => 
   `
+  🍕 ${item.pizzaName}
+  розмір: ${item.size}
+  кількість: ${item.quantity}
+  тісто: ${item.dough}
+  ціна: ${item.price}
+  `);
+  const message = newArr.join('');
 
-  bot.sendMessage(3997929, message); 
+  bot.sendMessage(3997929, message);
+
   res.send(`${message}`)
-
 })
 
 app.listen(port, () => {
